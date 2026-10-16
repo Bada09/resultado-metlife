@@ -1,0 +1,445 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Piloto MetLife · Resultados</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: single reading column (max 1080px) — summary strip, highlights, evolution chart, blocks as question rows, voices, respondent list */
+:root{
+  --bg:#f5f7f9; --surface:#ffffff; --ink:#15202b; --muted:#5b6876; --line:#dfe4ea;
+  --accent:#1f5f8b; --accent-soft:#e3eef6;
+  --good:#1d7a55; --good-soft:#e2f2ea; --warn:#a86a12; --warn-soft:#f7ecd9; --bad:#b23b3b; --bad-soft:#f6e1e1;
+  --s1:#c9544f; --s2:#e2a08c; --s3:#c9d1da; --s4:#6fa3c7; --s5:#1f5f8b;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Public Sans", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f151b; --surface:#172029; --ink:#e7edf3; --muted:#9aa8b6; --line:#2a3642;
+  --accent:#7fb6dc; --accent-soft:#1c3345;
+  --good:#5fc596; --good-soft:#173328; --warn:#e0a94f; --warn-soft:#3a2d17; --bad:#e67b76; --bad-soft:#3a1f1f;
+  --s1:#d96b66; --s2:#b9806f; --s3:#44515e; --s4:#4f86ad; --s5:#8cc0e4; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f151b; --surface:#172029; --ink:#e7edf3; --muted:#9aa8b6; --line:#2a3642;
+  --accent:#7fb6dc; --accent-soft:#1c3345;
+  --good:#5fc596; --good-soft:#173328; --warn:#e0a94f; --warn-soft:#3a2d17; --bad:#e67b76; --bad-soft:#3a1f1f;
+  --s1:#d96b66; --s2:#b9806f; --s3:#44515e; --s4:#4f86ad; --s5:#8cc0e4; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px;padding-block:32px 64px;display:flex;flex-direction:column;gap:48px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(28px,4.4vw,42px);font-weight:700;letter-spacing:-.01em}
+h2{font-size:22px;font-weight:700}
+h3{font-size:15px;font-weight:600;font-family:var(--f-body)}
+p{margin:0}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+section{display:flex;flex-direction:column;gap:18px}
+.sec-head{display:flex;flex-direction:column;gap:6px;max-width:68ch}
+
+/* header */
+header{display:flex;flex-direction:column;gap:14px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--muted);font-size:14px}
+.meta b{color:var(--ink);font-weight:600}
+
+/* KPI strip */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.kpi{background:var(--surface);padding:18px 20px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.kpi .v{font-family:var(--f-display);font-size:34px;font-weight:700;line-height:1.1}
+.kpi .l{font-size:13px;font-weight:600}
+.kpi .s{font-size:12.5px;color:var(--muted)}
+.kpi.hero .v{color:var(--accent)}
+
+/* highlights */
+.hl{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.hl article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.hl .big{font-family:var(--f-display);font-size:26px;font-weight:700;color:var(--good)}
+.hl p{font-size:14px;color:var(--muted)}
+.hl h3{font-size:15px}
+
+/* evolution */
+.evo{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:24px}
+.evo svg{width:100%;height:auto;display:block}
+.evo-side{display:flex;flex-direction:column;gap:14px}
+.cmp{display:grid;grid-template-columns:1fr auto auto;gap:6px 14px;font-size:13.5px;align-items:baseline}
+.cmp .h{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.cmp .up{color:var(--good);font-weight:700}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--muted)}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:0}
+@media (max-width:760px){.evo{grid-template-columns:minmax(0,1fr)}}
+
+/* NPS histogram */
+.npsbox{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;grid-template-columns:260px minmax(0,1fr);gap:28px;align-items:center}
+@media (max-width:760px){.npsbox{grid-template-columns:minmax(0,1fr)}}
+.npsbar{display:flex;height:14px;border-radius:7px;overflow:hidden;gap:2px}
+.npsrows{display:flex;flex-direction:column;gap:8px;font-size:13.5px}
+.npsrows div{display:flex;justify-content:space-between;gap:10px}
+.hist{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;align-items:end;height:130px}
+.hist .col{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%}
+.hist .bar{width:100%;border-radius:4px 4px 0 0;min-height:2px}
+.hist .c{font-size:12px;font-weight:600}
+.hist .x{font-size:11.5px;color:var(--muted);margin-top:4px}
+
+/* blocks */
+.tabs{display:flex;flex-wrap:wrap;gap:6px}
+.tab{font:inherit;font-size:13.5px;font-weight:500;padding:7px 13px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.tab:focus-visible,.rowbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.block{background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.block-h{padding:16px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+.q{padding:16px 20px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:10px 28px;align-items:center}
+.q:last-child{border-bottom:0}
+@media (max-width:760px){.q{grid-template-columns:minmax(0,1fr)}}
+.qt{display:flex;gap:12px;align-items:flex-start;min-width:0}
+.qn{font-size:12px;font-weight:600;color:var(--muted);min-width:28px;padding-top:2px}
+.qtext{font-size:14.5px;font-weight:500}
+.qsub{font-size:12.5px;color:var(--muted);margin-top:3px}
+.score{font-family:var(--f-display);font-size:22px;font-weight:700;min-width:54px;text-align:right}
+.scale{display:flex;align-items:center;gap:14px;min-width:0}
+.stack{flex:1;display:flex;height:26px;border-radius:6px;overflow:hidden;gap:2px;min-width:0}
+.stack span{display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:600;color:#fff;min-width:0}
+.stack span.lt{color:var(--ink)}
+.opts{display:flex;flex-direction:column;gap:6px;min-width:0}
+.opt{display:grid;grid-template-columns:minmax(0,1fr) 90px 44px;gap:10px;align-items:center;font-size:13px}
+.opt .track{height:8px;background:var(--bg);border-radius:4px;overflow:hidden}
+.opt .fill{height:100%;background:var(--accent);border-radius:4px}
+.opt.pos .fill{background:var(--good)}
+.opt .pct{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+.scalekey{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--muted)}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+
+/* callout + fase 2 */
+.callout{margin:-24px 0 0;padding:12px 16px;border-radius:10px;background:var(--good-soft);color:var(--good);font-size:14px}
+.callout b{font-weight:700}
+.f2{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.f2 article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.f2 h3{font-family:var(--f-display);font-size:17px;color:var(--accent)}
+.f2 p{font-size:14px}
+.f2 q{font-size:13px;color:var(--muted);font-style:italic}
+.f2-cta{background:var(--accent-soft);border-radius:10px;padding:14px 18px;font-size:14.5px}
+/* voices */
+.quotes{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.quote{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.quote p{font-size:14.5px}
+.who{font-size:12.5px;color:var(--muted);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pill{display:inline-block;font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;font-variant-numeric:tabular-nums}
+.pill.p{background:var(--good-soft);color:var(--good)}
+.pill.n{background:var(--warn-soft);color:var(--warn)}
+.pill.d{background:var(--bad-soft);color:var(--bad)}
+
+/* respondents */
+.people{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.phead,.rowbtn{display:grid;grid-template-columns:120px minmax(0,1.4fr) minmax(0,1fr) 64px 64px 24px;gap:12px;align-items:center;padding:12px 18px}
+.phead{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line)}
+.prow{border-bottom:1px solid var(--line)}
+.prow:last-child{border-bottom:0}
+.rowbtn{width:100%;font:inherit;font-size:14px;background:none;border:0;color:var(--ink);text-align:left;cursor:pointer}
+.rowbtn:hover{background:var(--accent-soft)}
+.rowbtn .chev{transition:transform .15s;color:var(--muted)}
+.prow.open .chev{transform:rotate(90deg)}
+.detail{padding:4px 18px 18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px 24px}
+.detail div{font-size:13px;min-width:0}
+.detail .dq{color:var(--muted);font-size:12px}
+.detail .wide{grid-column:1/-1}
+@media (max-width:640px){
+  .phead{display:none}
+  .rowbtn{grid-template-columns:minmax(0,1fr) auto auto 20px}
+  .rowbtn .c-date,.rowbtn .c-ag{display:none}
+}
+.foot{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Rhapsody × MetLife · Piloto de simulações comerciais</span>
+    <h1>Resultados do questionário de avaliação</h1>
+    <div class="meta" id="meta"></div>
+  </header>
+
+  <div class="kpis" id="kpis"></div>
+  <p class="callout">Mesmo o único detrator avaliou o conceito como <b>“sensacional”</b>. Desde 24/09, nenhuma nota abaixo de 7.</p>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Destaques</span>
+      <h2>O que o piloto já entrega</h2>
+    </div>
+    <div class="hl" id="hl"></div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Evolução</span>
+      <h2>A percepção melhorou ao longo da coleta</h2>
+      <p class="muted">NPS acumulado a cada nova resposta, em ordem cronológica. Cada ponto é um corretor, colorido pela nota de recomendação.</p>
+    </div>
+    <div class="evo">
+      <div id="evochart"></div>
+      <div class="evo-side">
+        <div class="cmp" id="cmp"></div>
+        <div class="legend">
+          <span><i class="dot" style="background:var(--good)"></i>Promotor (9–10)</span>
+          <span><i class="dot" style="background:var(--warn)"></i>Neutro (7–8)</span>
+          <span><i class="dot" style="background:var(--bad)"></i>Detrator (0–6)</span>
+        </div>
+        <p class="muted" style="font-size:12.5px">Com 11 respostas, é um sinal de tendência, não uma conclusão estatística.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Bloco 6 · Recomendação</span>
+      <h2>NPS</h2>
+    </div>
+    <div class="npsbox" id="nps"></div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Por bloco</span>
+      <h2>Respostas pergunta a pergunta</h2>
+    </div>
+    <div class="scalekey" id="scalekey"></div>
+    <div class="tabs" role="tablist" id="btabs"></div>
+    <div id="blocks"></div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Próximo passo</span>
+      <h2>Os corretores já desenham a fase 2</h2>
+      <p class="muted">As sugestões pedem mais prática, não menos. Quatro frentes aparecem nas respostas abertas (Q8, Q15, Q21 e Q22).</p>
+    </div>
+    <div class="f2">
+      <article><h3>Jornada completa</h3><p>Da abordagem ao fechamento numa mesma simulação, e não apenas recortes de uma etapa.</p><q>Poderia ter uma simulação completa da jornada com o cliente.</q></article>
+      <article><h3>Mais perfis de cliente</h3><p>Médico, alta renda, faixas etárias e perfis comportamentais variados, com níveis de dificuldade.</p><q>Incluir mais perfis de clientes com faixa etária diferente.</q></article>
+      <article><h3>Objeções encadeadas</h3><p>Preço, “vou pensar”, cônjuge, concorrência: o cliente reage ao argumento e traz a próxima objeção.</p><q>Objeções diferentes na mesma corrida!</q></article>
+      <article><h3>Novos temas de alto valor</h3><p>Sucessão e inventário, alto patrimônio, previdência × seguro, retenção de cancelamentos.</p><q>Clientes de alto patrimônio que acreditam não precisar de proteção.</q></article>
+    </div>
+    <p class="f2-cta"><b>Proposta para a fase 2:</b> construir os cenários com corretores e líderes experientes da MetLife e deixar o cliente simulado mais natural, que é o principal ponto de melhoria apontado.</p>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Perguntas abertas</span>
+      <h2>O que os corretores disseram</h2>
+    </div>
+    <div class="tabs" role="tablist" id="vtabs"></div>
+    <div class="quotes" id="quotes"></div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Detalhe</span>
+      <h2>Respostas individuais</h2>
+      <p class="muted">Toque numa linha para ver todas as respostas do corretor.</p>
+    </div>
+    <div class="people" id="people"></div>
+  </section>
+
+  <p class="foot">Fonte: questionário de avaliação do piloto, 22 perguntas, respostas de 23/09 a 28/09/2026. NPS principal calculado com as respostas até 25/09, mesmo corte dos dados da plataforma; com todas as respostas até 28/09, o NPS é +36. Média 1–5 calculada sobre as 10 perguntas de escala (Q1–3, Q5–6, Q9–12, Q16). Nomes de agência normalizados (maiúsculas e minúsculas).</p>
+</div>
+
+<script>
+const D = {"q": ["Como você avalia a facilidade de utilização da plataforma?", "Como você avalia a navegação e a experiência geral de utilização?", "As instruções e orientações apresentadas foram claras?", "Você encontrou algum problema técnico durante o piloto?", "O quanto as situações apresentadas nas simulações se aproximam de situações reais do seu dia a dia?", "Como você avalia a relevância dos cenários apresentados para sua atividade profissional?", "O nível de dificuldade das simulações foi adequado à sua experiência?", "Que situações ou temas você gostaria de encontrar nas próximas simulações?", "O feedback recebido após a simulação foi coerente com a sua atuação?", "Você considera que o score recebido representou adequadamente sua performance?", "O feedback ajudou você a identificar pontos concretos de melhoria?", "Como você avalia a capacidade da plataforma de reconhecer diferentes formas de responder adequadamente a uma mesma situação?", "Com que frequência você discordou da avaliação feita pela plataforma?", "Você identificou alguma situação em que considerou sua resposta adequada, mas a plataforma avaliou de forma diferente?", "O que você mudaria na forma como a plataforma avalia ou fornece feedback?", "O uso da plataforma ajudou você a identificar seus pontos fortes e pontos de melhoria?", "Você percebeu evolução na sua performance entre as primeiras e as últimas simulações?", "Você continuaria utilizando a plataforma se novos cenários fossem disponibilizados?", "De 0 a 10, o quanto você recomendaria a plataforma para outro corretor?", "Qual foi o principal ponto positivo da plataforma?", "Qual foi o principal ponto que deveria ser melhorado?", "Se você pudesse fazer apenas uma mudança na plataforma, qual seria?"], "rows": [{"data": "23/09/2026 13:51", "nome": "Alexandre Feitosa", "ag": "Geração BH", "q1": "4", "q2": "3", "q3": "4", "q4": "Sim, mas não prejudicou minha experiência", "q5": "4", "q6": "4", "q7": "Adequado", "q8": "Objeções já na abordagem para podermos antecipar", "q9": "4", "q10": "4", "q11": "4", "q12": "3", "q13": "Raramente", "q14": "Sim, uma vez", "q15": "Nada", "q16": "3", "q17": "Pouca evolução", "q18": "Sim, provavelmente", "q19": "8", "q20": "Ajudar os corretores, mas creio que eles tem dificuldade em fazer", "q21": "Praticidade e objetividade", "q22": "Ser um pouco mais realista"}, {"data": "23/09/2026 14:01", "nome": "Camilla Barbosa", "ag": "Rivo Rio", "q1": "3", "q2": "3", "q3": "5", "q4": "Sim, mas não prejudicou minha experiência", "q5": "3", "q6": "4", "q7": "Um pouco acima", "q8": "O despertar de necessidade na 1a reunião, “não preciso de seguro pois já tenho previdência”, “meus herdeiros não precisarão fazer inventário pois tenho holding”.", "q9": "5", "q10": "4", "q11": "5", "q12": "2", "q13": "Algumas vezes", "q14": "Sim, algumas vezes", "q15": "A avaliação de tecnicas comerciais tidas pela maquina como erradas, mas que constam do nosso treinamento", "q16": "4", "q17": "Pouca evolução", "q18": "Talvez", "q19": "7", "q20": "O feedback em relação a argumentos que poderiam ser utilizados", "q21": "A avaliação emocional do feedback e ter acesso ao contexto do cliente ao fazer uma simulação aleatória. Além disso, tive muitos runs com perfil disk vermelho, mas acredito que na vida real essas pessoas são minoria", "q22": "Tentaria deixar a maquina com uma voz mais proxima à humana. Apesar do feedback ser bom e as situações terem sido ajustadas, confesso que meu engajamento não foi alto pois me causou um certo desconforto ficar falando com a maquina… não sei muito bem explicar o porquê, mas é uma experiência meio esquisita"}, {"data": "23/09/2026 15:05", "nome": "Joao Vitor Maldonado", "ag": "Gorilla", "q1": "5", "q2": "3", "q3": "5", "q4": "Sim, e prejudicou parcialmente minha experiência", "q5": "2", "q6": "3", "q7": "Muito acima", "q8": "Situações reais, de uma etapa completa (abfone completo, ou abordagem completa, etc..), e não apenas recortes.", "q9": "4", "q10": "2", "q11": "4", "q12": "2", "q13": "Frequentemente", "q14": "Sim, frequentemente", "q15": "Menos robotizado. As interações não era nem próximas das reais, eram muito robóticas, e alguns feedbacks eram contra o que a gente mesmo da de treinamento para os consultores.", "q16": "3", "q17": "Sim, alguma evolução", "q18": "Provavelmente não", "q19": "5", "q20": "A ideia é sensacional. Ter uma IA feita para nosso negócio, com instruções claras para nosso corretor, independente do tempo de casa, em diferentes momentos da carreira. Ideia incrível", "q21": "A execução dessa ideia não está suficiente. Ainda está muito robótico, segmentado, sem situações reais do campo, com muita teimosia do robô em pontos que não são relevantes.", "q22": "Pensaria em uma solução de treinamento mais ampla e real, pra de fato o consultor conseguir aplicar no dia a dia dele."}, {"data": "23/09/2026 18:05", "nome": "Aline Almeida", "ag": "Ark", "q1": "4", "q2": "4", "q3": "5", "q4": "Sim, mas não prejudicou minha experiência", "q5": "5", "q6": "4", "q7": "Adequado", "q8": "Poderia ter uma simulação completa da jornada com o cliente", "q9": "5", "q10": "4", "q11": "5", "q12": "4", "q13": "Algumas vezes", "q14": "Sim, algumas vezes", "q15": "Acho que ela avalia bem", "q16": "4", "q17": "Sim, alguma evolução", "q18": "Sim, provavelmente", "q19": "9", "q20": "Eu gosto da oportunidade de fazer uma auto análise da minha abordagem com possibilidade de me aperfeiçoar cada vez mais", "q21": "Incluir mais perfis de clientes com faixa etária diferente", "q22": "Deixaria mais visual"}, {"data": "23/09/2026 19:11", "nome": "Wilson Arita", "ag": "Inside", "q1": "4", "q2": "4", "q3": "5", "q4": "Sim, mas não prejudicou minha experiência", "q5": "3", "q6": "4", "q7": "Adequado", "q8": "Objeções diferentes na mesma corrida! Combate 2 vezes e a IA vem com outra.", "q9": "4", "q10": "4", "q11": "5", "q12": "3", "q13": "Algumas vezes", "q14": "Sim, uma vez", "q15": "Não mudaria, só questões pontuais. Do aprendemos no campo.", "q16": "4", "q17": "Sim, evolução significativa", "q18": "Sim, com certeza", "q19": "10", "q20": "Treinamento e feedback a qualquer momento! No dia a dia é bem difícil conseguir um rolê play e é diferente qdo fazemos com perfis diferentes.", "q21": "Questões pontuais do dia a dia do consultor! Talvez gravar reuniões com aval do cliente.", "q22": "Acho q foi excelente para um piloto"}, {"data": "24/09/2026 14:48", "nome": "Marcelo Bernardes", "ag": "Rivo Rio", "q1": "4", "q2": "4", "q3": "4", "q4": "Não", "q5": "4", "q6": "5", "q7": "Adequado", "q8": "Tudo tranquilo até aqui.", "q9": "4", "q10": "4", "q11": "4", "q12": "4", "q13": "Raramente", "q14": "Sim, uma vez", "q15": "Ótima!", "q16": "4", "q17": "Sim, alguma evolução", "q18": "Sim, provavelmente", "q19": "9", "q20": "Muito Didático e profissional.", "q21": "Resposta mais humanizadas.", "q22": "Tudo \nOK."}, {"data": "24/09/2026 20:02", "nome": "Mauro Omarini", "ag": "Inside", "q1": "3", "q2": "4", "q3": "4", "q4": "Sim, mas não prejudicou minha experiência", "q5": "3", "q6": "4", "q7": "Adequado", "q8": "Considero adequado os existentes", "q9": "4", "q10": "4", "q11": "4", "q12": "3", "q13": "Algumas vezes", "q14": "Sim, uma vez", "q15": "adequado", "q16": "4", "q17": "Sim, alguma evolução", "q18": "Talvez", "q19": "8", "q20": "Ter facilidade e disponibilidade para treinar", "q21": "Clareza na utilização", "q22": "Nada específico"}, {"data": "25/09/2026 14:12", "nome": "Luis Sertori", "ag": "Ark", "q1": "5", "q2": "5", "q3": "5", "q4": "Não", "q5": "4", "q6": "4", "q7": "Adequado", "q8": "Mais dificuldades de variacao de perfis", "q9": "5", "q10": "5", "q11": "5", "q12": "5", "q13": "Raramente", "q14": "Sim, uma vez", "q15": "Feedbacks baseado em aprendizado de maquina com base no perfil de cada corretor", "q16": "4", "q17": "Sim, evolução significativa", "q18": "Sim, provavelmente", "q19": "10", "q20": "Possibilidade de role play sempre", "q21": "Personalizacao com base no perfil do corretor", "q22": "Gameficacao"}, {"data": "28/09/2026 10:39", "nome": "Michele Rezende Dias", "ag": "Geração", "q1": "5", "q2": "4", "q3": "3", "q4": "Sim, mas não prejudicou minha experiência", "q5": "3", "q6": "3", "q7": "Adequado", "q8": "Retenção de cancelamentos,", "q9": "4", "q10": "4", "q11": "4", "q12": "4", "q13": "Raramente", "q14": "Sim, uma vez", "q15": "Mais resumido e objetivo", "q16": "4", "q17": "Pouca evolução", "q18": "Sim, provavelmente", "q19": "8", "q20": "Treinamentos e correção de erros na abordagem", "q21": "Respostas da Ia são muito repetidas inflexíveis as vz. O cliente real não objeta tanto.", "q22": "Melhoria na resposta da Ia, menos agressiva."}, {"data": "28/09/2026 11:06", "nome": "Monique Della Rovere", "ag": "Gorilla Life", "q1": "4", "q2": "4", "q3": "5", "q4": "Sim, mas não prejudicou minha experiência", "q5": "4", "q6": "4", "q7": "Adequado", "q8": "Também seria interessante incluir simulações sobre inventário e planejamento sucessório, além de conversas com clientes de alto patrimônio que acreditam não precisar de proteção financeira por já terem muitos recursos. Esses cenários ajudariam a praticar abordagens sobre liquidez, preservação do patrimônio e continuidade financeira da família.", "q9": "5", "q10": "4", "q11": "4", "q12": "4", "q13": "Raramente", "q14": "Não", "q15": "Nao mudaria nada.", "q16": "3", "q17": "Sim, alguma evolução", "q18": "Sim, provavelmente", "q19": "9", "q20": "A experiência é muito válida, principalmente para quem está começando e precisa de bastante treinamento. Nem sempre é fácil encontrar outro consultor disponível para praticar um role play, então essa ferramenta ajuda muito. Gostei bastante!", "q21": "Às vezes, as respostas da plataforma ficam repetitivas. Por exemplo, quando o cliente diz “prefiro ver a proposta”, eu trabalho essa objeção, mas a plataforma repete a mesma fala, sem considerar o que respondi. Seria interessante que a conversa evoluísse de acordo com os argumentos apresentados.", "q22": "nenhuma"}, {"data": "28/09/2026 13:25", "nome": "Fabiana Campos Lage", "ag": "Geração", "q1": "3", "q2": "3", "q3": "4", "q4": "Sim, mas não prejudicou minha experiência", "q5": "2", "q6": "3", "q7": "Muito acima", "q8": "Gostaria de cenários mais próximos da rotina real do corretor, envolvendo objeções de preço, concorrência, cônjuge, adiamento da decisão, redução de cobertura, follow-up e fechamento. Também seria interessante simular diferentes perfis de clientes médico, cliente alta renda, cabeleireira…e níveis de dificuldade, para treinar não apenas a apresentação, mas principalmente a condução da conversa e a tomada de decisão comercial.", "q9": "3", "q10": "3", "q11": "4", "q12": "4", "q13": "Algumas vezes", "q14": "Sim, uma vez", "q15": "Eu deixaria o feedback mais conectado à realidade da venda. Em alguns momentos, a avaliação parece considerar uma condução muito idealizada, diferente do que acontece numa conversa real com o cliente.", "q16": "3", "q17": "Sim, alguma evolução", "q18": "Talvez", "q19": "8", "q20": "Acho muito legal a possibilidade de treinar situações comerciais em um ambiente seguro e já receber um feedback na hora.", "q21": "Em alguns momentos, os cenários e a forma de avaliação ficaram distantes do que acontece na prática com o cliente. Uma validação prévia por corretores experientes poderia ajudar a calibrar melhor as situações, objeções e critérios de feedback antes dos testes.", "q22": "Talvez envolver um corretor ou líder mais experiente na construção e validação das simulações antes dos testes. Como eles vivem situações comerciais diferentes no dia a dia, acredito que poderiam contribuir para deixar os cenários e feedbacks ainda mais próximos da nossa realidade.\nAchei a plataforma um pouco confusa em alguns momentos. Nem sempre é tão intuitivo saber onde clicar ou como seguir, e o feedback às vezes demora para aparecer. Acho que, deixando o uso mais simples e rápido, a experiência ficaria bem melhor."}]};
+const R = D.rows, QT = D.q, N = R.length;
+const SCALE = ['q1','q2','q3','q5','q6','q9','q10','q11','q12','q16'];
+const LAB = {
+  q1:['Muito difícil','Difícil','Regular','Fácil','Muito fácil'],
+  q2:['Muito ruim','Ruim','Regular','Boa','Excelente'],
+  q3:['Nada claras','Pouco claras','Neutras','Claras','Muito claras'],
+  q5:['Nada próximas','Pouco','Moderado','Próximas','Muito próximas'],
+  q6:['Nada relevantes','Pouco','Médias','Relevantes','Muito relevantes'],
+  q9:['Nada coerente','Pouco','Neutro','Coerente','Muito coerente'],
+  q10:['Discordo totalmente','Discordo','Neutro','Concordo','Concordo totalmente'],
+  q11:['Não ajudou','Pouco','Neutro','Ajudou','Ajudou muito'],
+  q12:['Muito ruim','Ruim','Regular','Boa','Excelente'],
+  q16:['Discordo totalmente','Discordo','Neutro','Concordo','Concordo totalmente']
+};
+const OPTS = {
+  q4:{o:['Não','Sim, mas não prejudicou minha experiência','Sim, e prejudicou parcialmente minha experiência','Sim, e impediu a realização de alguma atividade'],
+      s:['Não','Sim, sem prejuízo','Sim, prejudicou parcialmente','Sim, impediu atividade'],pos:[0,1]},
+  q7:{o:['Muito abaixo do meu nível','Um pouco abaixo','Adequado','Um pouco acima','Muito acima'],pos:[2]},
+  q13:{o:['Nunca','Raramente','Algumas vezes','Frequentemente','Sempre'],pos:[0,1]},
+  q14:{o:['Não','Sim, uma vez','Sim, algumas vezes','Sim, frequentemente'],pos:[0,1]},
+  q17:{o:['Sim, evolução significativa','Sim, alguma evolução','Pouca evolução','Não percebi evolução','Não consigo avaliar'],pos:[0,1]},
+  q18:{o:['Sim, com certeza','Sim, provavelmente','Talvez','Provavelmente não','Não'],pos:[0,1]}
+};
+const BLOCKS = [
+  {t:'Experiência de uso',q:['q1','q2','q3','q4']},
+  {t:'Realismo e relevância',q:['q5','q6','q7']},
+  {t:'Assertividade do feedback',q:['q9','q10','q11']},
+  {t:'Calibragem da plataforma',q:['q12','q13','q14']},
+  {t:'Evolução e aprendizado',q:['q16','q17','q18']}
+];
+const OPEN = [
+  {k:'q20',t:'Principal ponto positivo'},
+  {k:'q8',t:'Temas desejados'},
+  {k:'q21',t:'O que melhorar'},
+  {k:'q15',t:'Mudanças na avaliação'},
+  {k:'q22',t:'Uma única mudança'}
+];
+
+const fmt = (v,d=1)=>v.toFixed(d).replace('.',',');
+const pct = v=>Math.round(v*100)+'%';
+const esc = s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const cat = n=>n>=9?'p':n>=7?'n':'d';
+const catColor = {p:'var(--good)',n:'var(--warn)',d:'var(--bad)'};
+const avg = k=>R.reduce((a,r)=>a+ +r[k],0)/N;
+const share45 = k=>R.filter(r=>+r[k]>=4).length/N;
+const cnt = (k,v)=>R.filter(r=>r[k]===v).length;
+const rowAvg = r=>SCALE.reduce((a,k)=>a+ +r[k],0)/SCALE.length;
+const npsOf = arr=>{const p=arr.filter(r=>+r.q19>=9).length,d=arr.filter(r=>+r.q19<=6).length;return Math.round((p-d)/arr.length*100)};
+const parseDate = s=>{const [d,t]=s.split(' ');const [dd,mm,yy]=d.split('/');return new Date(`${yy}-${mm}-${dd}T${t}`)};
+const sorted = [...R].sort((a,b)=>parseDate(a.data)-parseDate(b.data));
+const signed = v=>(v>0?'+':v<0?'−':'')+Math.abs(v);
+
+/* meta + KPIs */
+const ags = new Set(R.map(r=>r.ag)).size;
+const overall = SCALE.reduce((a,k)=>a+avg(k),0)/SCALE.length;
+const NPS_ALL = npsOf(R);
+const R25 = R.filter(r=>parseDate(r.data) < new Date('2026-09-26T00:00'));
+const NPS = npsOf(R25);
+document.getElementById('meta').innerHTML =
+  `<span><b class="num">${N}</b> corretores</span><span><b class="num">${ags}</b> agências</span><span>Coleta de <b>23/09</b> a <b>28/09/2026</b></span><span><b>100%</b> das perguntas respondidas</span>`;
+const cont = (cnt('q18','Sim, com certeza')+cnt('q18','Sim, provavelmente'))/N;
+const noImpact = (cnt('q4','Não')+cnt('q4','Sim, mas não prejudicou minha experiência'))/N;
+const kpis = [
+  {v:signed(NPS),l:'NPS',s:`${R25.length} respostas até 25/09, mesmo período dos dados da plataforma`,hero:1},
+  {v:pct(share45('q11')),l:'Feedback útil',s:'ajudou a identificar melhorias (Q11)'},
+  {v:fmt(overall),l:'Média geral',s:'10 perguntas de escala 1–5'},
+  {v:pct(noImpact),l:'Uso sem prejuízo',s:'problemas técnicos não afetaram a experiência'},
+];
+document.getElementById('kpis').innerHTML = kpis.map(k=>
+  `<div class="kpi${k.hero?' hero':''}"><span class="v num">${k.v}</span><span class="l">${k.l}</span><span class="s">${k.s}</span></div>`).join('');
+
+/* highlights */
+const evoPct = (cnt('q17','Sim, evolução significativa')+cnt('q17','Sim, alguma evolução'))/N;
+const hl = [
+  {b:fmt(avg('q11')),h:'Feedback é o ponto mais forte',p:`Todos os corretores deram 4 ou 5 à utilidade do feedback. Coerência com a atuação: ${fmt(avg('q9'))}, com ${pct(share45('q9'))} nas notas 4–5.`},
+  {b:pct(evoPct),h:'Evolução percebida',p:'Perceberam melhora na própria performance entre as primeiras e as últimas simulações. Ninguém respondeu "não percebi evolução".'},
+  {b:fmt(avg('q3')),h:'Instruções claras',p:`${pct(share45('q3'))} avaliaram as orientações como claras ou muito claras. Facilidade e navegação não tiveram nenhuma nota abaixo de 3.`},
+  {b:pct(cnt('q7','Adequado')/N),h:'Dificuldade na medida',p:'Acharam o nível das simulações adequado à sua experiência. Ninguém achou fácil demais.'}
+];
+document.getElementById('hl').innerHTML = hl.map(x=>
+  `<article><span class="big num">${x.b}</span><h3>${x.h}</h3><p>${x.p}</p></article>`).join('');
+
+/* evolution chart */
+(function(){
+  const W=640,H=280,m={l:44,r:16,t:18,b:44};
+  const iw=W-m.l-m.r, ih=H-m.t-m.b;
+  const pts = sorted.map((r,i)=>({r,i,v:npsOf(sorted.slice(0,i+1))}));
+  const x=i=>m.l+(pts.length===1?iw/2:i*iw/(pts.length-1));
+  const y=v=>m.t+(100-v)/200*ih;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="NPS acumulado ao longo das respostas">`;
+  [-100,-50,0,50,100].forEach(g=>{
+    s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${y(g)}" y2="${y(g)}" stroke="var(--line)" stroke-width="${g===0?1.5:1}" ${g===0?'':'stroke-dasharray="3 4"'}/>`;
+    s+=`<text x="${m.l-8}" y="${y(g)+4}" text-anchor="end" font-size="11" fill="var(--muted)">${signed(g)}</text>`;
+  });
+  const area = `M${x(0)},${y(0)} `+pts.map(p=>`L${x(p.i)},${y(p.v)}`).join(' ')+` L${x(pts.length-1)},${y(0)} Z`;
+  s+=`<path d="${area}" fill="var(--accent-soft)" opacity=".8"/>`;
+  s+=`<polyline points="${pts.map(p=>x(p.i)+','+y(p.v)).join(' ')}" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/>`;
+  let lastDay='';
+  pts.forEach(p=>{
+    const c=cat(+p.r.q19);
+    s+=`<circle cx="${x(p.i)}" cy="${y(p.v)}" r="6" fill="${catColor[c]}" stroke="var(--surface)" stroke-width="2"><title>${esc(p.r.nome)} · nota ${p.r.q19} · NPS acumulado ${signed(p.v)}</title></circle>`;
+    const day=p.r.data.slice(0,5);
+    if(day!==lastDay){
+      s+=`<line x1="${x(p.i)}" x2="${x(p.i)}" y1="${m.t+ih}" y2="${m.t+ih+5}" stroke="var(--muted)"/>`;
+      s+=`<text x="${x(p.i)}" y="${m.t+ih+20}" text-anchor="${p.i===0?'start':'middle'}" font-size="11.5" fill="var(--muted)">${day}</text>`;
+      lastDay=day;
+    }
+  });
+  const lo=pts.reduce((a,p)=>p.v<a.v?p:a,pts[0]), last=pts[pts.length-1];
+  s+=`<text x="${x(lo.i)+10}" y="${y(lo.v)+16}" font-size="12" font-weight="600" fill="var(--bad)">${signed(lo.v)}</text>`;
+  s+=`<text x="${x(last.i)-10}" y="${y(last.v)-12}" text-anchor="end" font-size="12.5" font-weight="700" fill="var(--accent)">${signed(last.v)}</text>`;
+  s+=`<text x="${m.l+iw/2}" y="${H-4}" text-anchor="middle" font-size="11" fill="var(--muted)">Respostas em ordem de chegada</text>`;
+  s+='</svg>';
+  document.getElementById('evochart').innerHTML=s;
+
+  const first = sorted.filter(r=>r.data.startsWith('23/09')), rest = sorted.filter(r=>!r.data.startsWith('23/09'));
+  const a = arr=>arr.reduce((s,r)=>s+rowAvg(r),0)/arr.length;
+  const det = arr=>arr.filter(r=>+r.q19<=6).length;
+  document.getElementById('cmp').innerHTML =
+    `<span class="h"></span><span class="h">23/09</span><span class="h">24–28/09</span>`+
+    `<span>Respostas</span><span class="num">${first.length}</span><span class="num">${rest.length}</span>`+
+    `<span>NPS</span><span class="num">${signed(npsOf(first))}</span><span class="num up">${signed(npsOf(rest))}</span>`+
+    `<span>Detratores</span><span class="num">${det(first)}</span><span class="num up">${det(rest)}</span>`+
+    `<span>Média 1–5</span><span class="num">${fmt(a(first),2)}</span><span class="num up">${fmt(a(rest),2)}</span>`;
+})();
+
+/* NPS */
+(function(){
+  const c={p:0,n:0,d:0}; R25.forEach(r=>c[cat(+r.q19)]++);
+  const hist=Array.from({length:11},(_,i)=>R25.filter(r=>+r.q19===i).length);
+  const mx=Math.max(...hist);
+  const lbl={p:'Promotores (9–10)',n:'Neutros (7–8)',d:'Detratores (0–6)'};
+  let left=`<div style="display:flex;flex-direction:column;gap:14px">
+    <div><div class="num" style="font-family:var(--f-display);font-size:48px;font-weight:700;line-height:1;color:var(--accent)">${signed(NPS)}</div><div class="muted" style="font-size:12.5px;margin-top:6px">Respostas até 25/09 (${R25.length}). Com as ${N} respostas até 28/09: ${signed(NPS_ALL)}.</div></div>
+    <div class="npsbar">${['p','n','d'].map(k=>c[k]?`<span style="flex:${c[k]};background:${catColor[k]}"></span>`:'').join('')}</div>
+    <div class="npsrows">${['p','n','d'].map(k=>`<div><span><i class="dot" style="background:${catColor[k]}"></i>${lbl[k]}</span><span class="num">${c[k]} · ${pct(c[k]/R25.length)}</span></div>`).join('')}</div></div>`;
+  let right=`<div class="hist">${hist.map((h,i)=>{const k=cat(i);
+    return `<div class="col"><span class="c num">${h||''}</span><div class="bar" style="height:${h?h/mx*100:0}%;background:${h?catColor[k]:'var(--line)'}"></div><span class="x num">${i}</span></div>`}).join('')}</div>
+    <p class="muted" style="font-size:12.5px;margin-top:8px">Notas de 0 a 10 das ${R25.length} respostas até 25/09 para "o quanto você recomendaria a plataforma para outro corretor?"</p>`;
+  document.getElementById('nps').innerHTML=left+`<div style="min-width:0">${right}</div>`;
+})();
+
+/* blocks */
+document.getElementById('scalekey').innerHTML =
+  '<span>Escala 1–5:</span>'+[1,2,3,4,5].map(i=>`<span><i class="sw" style="background:var(--s${i})"></i>${i}</span>`).join('');
+function renderQ(k){
+  const n=+k.slice(1), text=QT[n-1];
+  if(LAB[k]){
+    const dist=[1,2,3,4,5].map(v=>cnt(k,String(v)));
+    const segs=dist.map((c,i)=>c?`<span class="${i===2?'lt':''}" style="flex:${c};background:var(--s${i+1})" title="${LAB[k][i]}: ${c}">${c}</span>`:'').join('');
+    return `<div class="q"><div class="qt"><span class="qn">Q${n}</span><div><div class="qtext">${esc(text)}</div><div class="qsub">${pct(share45(k))} nas notas 4–5 · ${LAB[k][0]} → ${LAB[k][4]}</div></div></div>
+      <div class="scale"><div class="stack">${segs}</div><span class="score num">${fmt(avg(k))}</span></div></div>`;
+  }
+  const o=OPTS[k];
+  const rows=o.o.map((opt,i)=>{const c=cnt(k,opt);return `<div class="opt${o.pos.includes(i)?' pos':''}"><span>${esc((o.s||o.o)[i])}</span><span class="track"><span class="fill" style="display:block;width:${c/N*100}%"></span></span><span class="pct">${c} · ${pct(c/N)}</span></div>`}).join('');
+  return `<div class="q"><div class="qt"><span class="qn">Q${n}</span><div><div class="qtext">${esc(text)}</div><div class="qsub">Em verde, as respostas favoráveis</div></div></div><div class="opts">${rows}</div></div>`;
+}
+function blockAvg(b){const s=b.q.filter(k=>LAB[k]);return s.reduce((a,k)=>a+avg(k),0)/s.length}
+const bt=document.getElementById('btabs'), bx=document.getElementById('blocks');
+function showBlock(i){
+  [...bt.children].forEach((t,j)=>t.setAttribute('aria-selected',j===i));
+  const b=BLOCKS[i];
+  bx.innerHTML=`<div class="block"><div class="block-h"><h2 style="font-size:18px">${b.t}</h2><span class="muted" style="font-size:13px">Média do bloco <b class="num" style="color:var(--ink)">${fmt(blockAvg(b))}</b> / 5</span></div>${b.q.map(renderQ).join('')}</div>`;
+}
+BLOCKS.forEach((b,i)=>{const t=document.createElement('button');t.className='tab';t.role='tab';t.textContent=b.t;t.onclick=()=>showBlock(i);bt.appendChild(t)});
+showBlock(2);
+
+/* voices */
+const vt=document.getElementById('vtabs'), qx=document.getElementById('quotes');
+const skip=/^(nada|nenhuma|nada espec[ií]fico|tudo ok\.?|adequado|ótima!?|tudo tranquilo até aqui\.?)$/i;
+function showOpen(i){
+  [...vt.children].forEach((t,j)=>t.setAttribute('aria-selected',j===i));
+  const k=OPEN[i].k;
+  const list=[...R].sort((a,b)=>+b.q19-+a.q19).filter(r=>r[k]&&!skip.test(r[k].trim().replace(/\s+/g,' ')));
+  qx.innerHTML=list.map(r=>{const c=cat(+r.q19);
+    return `<div class="quote"><p>${esc(r[k].trim()).replace(/\n/g,'<br>')}</p><div class="who"><span>${esc(r.nome)} · ${esc(r.ag)}</span><span class="pill ${c}">NPS ${r.q19}</span></div></div>`}).join('');
+}
+OPEN.forEach((o,i)=>{const t=document.createElement('button');t.className='tab';t.role='tab';t.textContent=o.t;t.onclick=()=>showOpen(i);vt.appendChild(t)});
+showOpen(0);
+
+/* respondents */
+(function(){
+  const el=document.getElementById('people');
+  let h=`<div class="phead"><span>Data</span><span>Nome</span><span>Agência</span><span>NPS</span><span>Média</span><span></span></div>`;
+  [...sorted].reverse().forEach((r,idx)=>{
+    const c=cat(+r.q19);
+    const det=QT.map((q,i)=>{const k='q'+(i+1);const long=r[k].length>90;
+      return `<div class="${long?'wide':''}"><div class="dq">Q${i+1} · ${esc(q)}</div><div>${esc(r[k]).replace(/\n/g,'<br>')}</div></div>`}).join('');
+    h+=`<div class="prow"><button class="rowbtn" aria-expanded="false" aria-controls="d${idx}" id="b${idx}">
+      <span class="c-date num muted">${r.data.slice(0,5)} · ${r.data.slice(11)}</span><span>${esc(r.nome)}</span><span class="c-ag muted">${esc(r.ag)}</span>
+      <span><span class="pill ${c}">${r.q19}</span></span><span class="num">${fmt(rowAvg(r))}</span><span class="chev" aria-hidden="true">›</span></button>
+      <div class="detail" id="d${idx}" hidden>${det}</div></div>`;
+  });
+  el.innerHTML=h;
+  el.addEventListener('click',e=>{const b=e.target.closest('.rowbtn');if(!b)return;
+    const row=b.parentElement,d=row.querySelector('.detail');const open=d.hidden;d.hidden=!open;row.classList.toggle('open',open);b.setAttribute('aria-expanded',open)});
+})();
+</script>
+
+</body></html>
